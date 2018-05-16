@@ -4,10 +4,21 @@ from bs4 import BeautifulSoup
 
 class Parser():
     
+    '''
+        room capacity ID's:
+            Lobby: 2142
+            2-People: 2116
+            4-People: 2117
+            6-People: 2118
+            8-People: 2119
+    '''
 
-    def __init__(self, date):
+    roomID = {'lobby' : 2142, 2 : 2116, 4 : 2217, 6 : 2118, 8 : 2119}
+
+    def __init__(self, date, numberOfPeople):
         self.date = date
         self.hasData = False
+        self.roomCap = self.roomID[numberOfPeople]
         self.room = self.retrieveRoomInfo()
 
     '''
@@ -35,11 +46,11 @@ class Parser():
         returns empty room if error occurs (can't get room)
     '''
     def retrieveRoomInfo(self):
-        data = {'date' : self.date}
+        data = {'gid' : self.roomCap, 'date' : self.date}
         room = {}
         try:
             #Get then data
-            response = requests.get('https://gmu.libcal.com/spaces/accessible/ajax/group?prevGroupId=2142&gid=2142&capacity=0', data)
+            response = requests.get('https://gmu.libcal.com/spaces/accessible/ajax/group?prevGroupId=2142&capacity=0', data)
             html = BeautifulSoup(response.text, 'html.parser')
 
             #Unavailability
