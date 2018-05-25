@@ -1,4 +1,4 @@
 from django import forms
 
-def DateForm(forms.Forms):
+class DateForm(forms.Form):
     study_date = forms.DateField(label='Study Date:')
