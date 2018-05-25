@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 class Date(models.Model):
     study_date = models.DateTimeField('study date') 
     
-    #What is study_date?
+class Rooms(models.Model):
     '''
     TODO:
         Rework the method to work withn tuples.
