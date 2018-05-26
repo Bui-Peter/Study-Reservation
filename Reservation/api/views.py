@@ -16,7 +16,6 @@ def get_date(request):
         if form.is_valid():
 #            form.cleaned_data
             
-=======
             return HttpResponse(str(form.cleaned_data))
 
     else:
