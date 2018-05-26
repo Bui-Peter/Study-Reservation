@@ -14,7 +14,6 @@ def get_date(request):
         form = DateForm(request.POST)
 
         if form.is_valid():
-<<<<<<< HEAD
 #            form.cleaned_data
             
 =======
@@ -24,5 +23,4 @@ def get_date(request):
         form = DateForm()
 
     return render(request, 'date.html', {'form' : form})
->>>>>>> 8844b54b4bb59c41fa7a13343a5130737489b7b2
 
