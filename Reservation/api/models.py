@@ -51,3 +51,13 @@ class Date(models.Model):
 class Room(models.Model):
     date = models.ForeignKey(Date, on_delete=models.CASCADE, null=True)
     room_number = models.CharField(max_length=4, default="0000")
+
+    def __str__(self):
+        return str(self.date) + " - " + str(self.room_number)
+
+class Time(models.Model):
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, null=True)
+    study_time = models.TimeField()
+
+    def __str__(self):
+        return str(self.room) + " - " + str(self.study_time)

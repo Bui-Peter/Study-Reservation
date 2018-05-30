@@ -1,9 +1,13 @@
 from django.contrib import admin
-from .models import Date, Room
+from .models import Date, Room, Time
 # Register your models here.
 
 class RoomInLine(admin.StackedInline):
     model = Room
+    extra = 0
+
+class TimeInLine(admin.StackedInline):
+    model = Time
     extra = 0
 
 class DateAdmin(admin.ModelAdmin):
@@ -15,3 +19,4 @@ class DateAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Date, DateAdmin)
+admin.site.register(Time)
