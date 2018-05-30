@@ -1,0 +1,21 @@
+{% block title %} <strong>{{given_date.study_date}}</strong> {% endblock %}
+
+{% block room %}
+
+<ul>
+	{% for room, times in room_list.items %}
+	<li>
+		{{room}}
+
+		{% for single_time in times %}
+		<ul>
+			<li>{{single_time}}</li>
+		</ul>
+		{% endfor %}
+	
+	</li>
+	{% endfor %}
+</ul>
+
+
+{% endblock %}
