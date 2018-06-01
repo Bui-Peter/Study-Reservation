@@ -1,0 +1,32 @@
+{% block title %} <strong>{{given_date.study_date}}</strong> {% endblock %}
+
+{% block room %}
+
+<form method="POST" action=''>
+	<select>
+		<option name="size" value="2">2</option>
+		<option name="size" value="4">4</option>
+		<option name="size" value="6">6</option>
+		<option name="size" value="8">8</option>
+	</select>
+</form>
+
+
+
+<ul>
+	{% for room, times in room_list.items %}
+	<li>
+		{{room}}
+
+		{% for single_time in times %}
+		<ul>
+			<li>{{single_time}}</li>
+		</ul>
+		{% endfor %}
+	
+	</li>
+	{% endfor %}
+</ul>
+
+
+{% endblock %}
