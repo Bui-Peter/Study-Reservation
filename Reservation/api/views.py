@@ -37,11 +37,11 @@ def index(request):
             #Key=Room
             #Value=Available Times
             for collection in html.find_all('fieldset'):
-                roomNumber = collection.legend.contents[0].strip()
-                room[roomNumber] = []
+                room_number = collection.legend.contents[0].strip()
+                room[room_number] = []
                 #Append times to the room number
                 for period in collection.find_all('label'):
-                    room[roomNumber].append(period.contents[2].strip())
+                    room[room_number].append(period.contents[2].strip())
 
     except:
         raise Http404('Unable to retrieve data')
@@ -51,36 +51,3 @@ def index(request):
     context = {'given_date' : date,'room_list' : room}
     return render(request, 'api/index.html', context)
 
-def get_date(request):
-    return HttpResponse("Getting the date")
-
-
-'''
-    Methods
-'''
-
-def retrieveRoomInfo(self):
-    data = {'date' : self.date}
-    room = {}
-    try:
-        #Get then data
-        response = requests.get('https://gmu.libcal.com/spaces/accessible/ajax/group?prevGroupId=2142&gid=2142&capacity=0', data)
-        html = BeautifulSoup(response.text, 'html.parser')
-
-        #Unavailability
-        try:
-            unavailable = html.find("div", class_="alert alert-warning").contents[0].strip()
-            print(unavailable)
-        
-        except:
-            #Assign Room
-            for collection in html.find_all('fieldset'):
-                newRoom = collection.legend.contents[0].strip()
-                room[newRoom] = []
-                for period in collection.find_all('label'):
-                    room[newRoom].append(period.contents[2].strip())
-
-    except:
-        print("Unable to retrieve data")
-    
-    return room
