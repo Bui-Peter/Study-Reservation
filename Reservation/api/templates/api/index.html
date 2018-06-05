@@ -3,7 +3,9 @@
 {% block room %}
 
 <form method="POST" action=''>
+{% csrf_token %}
 	<select name="size">
+		<option name="size" value="0">Lobby</option>
 		<option name="size" value="2">2</option>
 		<option name="size" value="4">4</option>
 		<option name="size" value="6">6</option>
