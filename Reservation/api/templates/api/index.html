@@ -1,36 +1,53 @@
-{% block title %} <strong>{{given_date.study_date}}</strong> {% endblock %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'api/style.css' %}" />
+
+<head>
+	<title>Study Reservation</title>
+</head>
+
+<body>
+
+{% block date %}
+<div id="date">
+	<b>{{given_date.study_date}}</b>
+</div>
+{% endblock %}
+
+
+<div id="filter">
+	<form method="POST" action=''>
+	{% csrf_token %}
+		<select name="size">
+			<option name="size" value="0">Lobby</option>
+			<option name="size" value="2">2</option>
+			<option name="size" value="4">4</option>
+			<option name="size" value="6">6</option>
+			<option name="size" value="8">8</option>
+		</select>
+		<br>
+		<input type="submit">
+	</form>
+</div>
+
 
 {% block room %}
-
-<form method="POST" action=''>
-{% csrf_token %}
-	<select name="size">
-		<option name="size" value="0">Lobby</option>
-		<option name="size" value="2">2</option>
-		<option name="size" value="4">4</option>
-		<option name="size" value="6">6</option>
-		<option name="size" value="8">8</option>
-	</select>
-	<br>
-	<input type="submit">
-</form>
-
-
-
-<ul>
-	{% for room, times in room_list.items %}
-	<li>
-		{{room}}
-
-		{% for single_time in times %}
-		<ul>
-			<li>{{single_time}}</li>
-		</ul>
+<div id="room number">
+	<ul>
+		{% for room, times in room_list.items %}
+		<li>
+			{{room}}
+			<div id="time">
+				{% for single_time in times %}
+				<ul>
+					<li>{{single_time}}</li>
+				</ul>	
+				{% endfor %}
+			</div>
+			
+		</li>
 		{% endfor %}
-	
-	</li>
-	{% endfor %}
-</ul>
+	</ul>
+</div>
 
-
+</body>
 {% endblock %}

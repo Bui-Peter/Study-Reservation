@@ -1,0 +1,15 @@
+body
+{
+	background: white;
+}
+
+#date {
+	border: 3px;
+	font-size: 36px;
+	text-align: center;
+}
+
+#time {
+	font-size: 18px;
+	padding: 25px;
+}
